@@ -5,7 +5,11 @@ function GuessInput({guessInput, setGuessInput, guessList, setGuessList}) {
   function submitGuess(event) {
     event.preventDefault();
     //console.log({ guess: guessInput })
-    setGuessList([...guessList, guessInput])
+    if(guessList.length <= 5) {
+      setGuessList([...guessList, guessInput])
+    } else {
+      window.alert('maximum guess')
+    }
     setGuessInput('')
   }
 

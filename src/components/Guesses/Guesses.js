@@ -1,14 +1,24 @@
 import React from 'react';
+import {range} from '../../utils';
 
 function Guesses({ guessList }) {
   return (
     <div className="guess-results">
-      {guessList.map((word, index) => (
+      {range(6).map((num) => (
         <p
-          key={index}
-          className="guess"
+          key={num}
+          className='guess'
         >
-          {word}
+          {guessList[num] 
+            ? guessList[num].split('').map((letter,index) => (
+              <span key={index} className="cell">{
+                letter}
+              </span>
+            ))
+            : range(5).map((cell) => (
+              <span key={cell} className="cell"></span>
+            ))
+          }
         </p>
       ))}
     </div>

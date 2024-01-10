@@ -1,11 +1,12 @@
 import React from 'react';
+import {NUM_OF_GUESSES_ALLOWED} from '../../constants'
 
 function GuessInput({guessInput, setGuessInput, guessList, setGuessList}) {
 
   function submitGuess(event) {
     event.preventDefault();
     //console.log({ guess: guessInput })
-    if(guessList.length <= 5) {
+    if(guessList.length < NUM_OF_GUESSES_ALLOWED) {
       setGuessList([...guessList, guessInput])
     } else {
       window.alert('maximum guess')

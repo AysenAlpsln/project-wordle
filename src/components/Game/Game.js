@@ -18,6 +18,7 @@ function Game() {
   return (
     <>
       <Guesses 
+        answer={answer}
         guessList = {guessList}
       />
       <GuessInput 

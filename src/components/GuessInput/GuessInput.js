@@ -1,16 +1,31 @@
 import React from 'react';
 import {NUM_OF_GUESSES_ALLOWED} from '../../constants'
 
-function GuessInput({guessInput, setGuessInput, guessList, setGuessList}) {
+function GuessInput({answer, guessInput, setGuessInput, guessList, setGuessList, setGuessResult}) {
 
   function submitGuess(event) {
     event.preventDefault();
-    //console.log({ guess: guessInput })
-    if(guessList.length < NUM_OF_GUESSES_ALLOWED) {
-      setGuessList([...guessList, guessInput])
+    
+    // update guessList
+    var updatedList = [...guessList, guessInput]
+    console.log(updatedList.length)
+
+    // Checking whether the word is the correct word
+    if(guessInput === answer) {
+      setGuessList(updatedList)
+      setGuessResult({class:'happy', count:updatedList.length})
     } else {
-      window.alert('maximum guess')
+      if(updatedList.length < NUM_OF_GUESSES_ALLOWED) {
+        setGuessList(updatedList)
+      } else if(updatedList.length === NUM_OF_GUESSES_ALLOWED){
+        setGuessList(updatedList)
+        setGuessResult({class:'sad', count:updatedList.length})
+      } else {
+        window.alert('Sorry, you have reached the maximum number of guesses.')
+      }
     }
+
+    // cleant the input
     setGuessInput('')
   }
 

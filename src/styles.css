@@ -184,6 +184,9 @@ h1 {
   background: var(--color-error);
   color: white;
 }
+.none.banner {
+  display: none;
+}
 
 .visually-hidden {
   position: absolute;
